@@ -1,3 +1,6 @@
+import eventlet
+eventlet.monkey_patch()
+
 from flask import Flask, render_template
 from flask_socketio import SocketIO, join_room, emit
 
@@ -15,14 +18,10 @@ def index():
 def handle_join(data):
     username = data['username']
     room = data['room']
-
     join_room(room)
-
     if room not in rooms:
         rooms[room] = []
-
     emit('chat_history', rooms[room], room=request.sid)
-
     msg = f"{username} has joined the room."
     rooms[room].append(msg)
     emit('message', msg, room=room)
@@ -32,7 +31,6 @@ def handle_message(data):
     username = data['username']
     room = data['room']
     msg = f"{username}: {data['msg']}"
-
     rooms[room].append(msg)
     emit('message', msg, room=room)
 
