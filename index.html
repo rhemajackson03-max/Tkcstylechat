@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TKC Chat</title>
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+</head>
+<body>
+    <h2>TKC Chatroom</h2>
+
+    <input id="username" placeholder="Enter username">
+    <input id="room" placeholder="Room">
+    <button onclick="joinRoom()">Join</button>
+
+    <div id="chat" style="margin-top:20px; border:1px solid black; height:300px; width:300px; overflow:auto;"></div>
+
+    <input id="msgBox" placeholder="Message">
+    <button onclick="sendMsg()">Send</button>
+
+    <script src="/static/chat.js"></script>
+</body>
+</html>
